@@ -7,149 +7,40 @@
   <title>RATZ.IO - ULTIMATE BATTLE ROYALE EDITION</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Press+Start+2P&display=swap" rel="stylesheet" />
   <style>
-    body {
-      margin: 0;
-      overflow: hidden;
-      background: #050505;
-      font-family: 'Orbitron', sans-serif;
-      color: white;
-      user-select: none;
-      image-rendering: pixelated;
+    body {margin:0;overflow:hidden;background:#050505;font-family:'Orbitron',sans-serif;color:white;user-select:none;image-rendering:pixelated;}
+    #menu, #lobbySelector, #death, #win, #timeup, #transcended {
+      position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+      background:radial-gradient(circle at center, rgba(255,0,128,0.22) 0%, #000 90%);z-index:10;
     }
-
-    #menu h1 {
-      font-size: 80px;
-      color: #00ffff;
-      text-shadow: 4px 4px 0 #ff0080, -4px -4px 0 #000;
-      margin: 10px;
-      animation: hotlinePulse 0.5s infinite alternate, hotlineTilt 2s infinite ease-in-out, flicker 2s infinite;
-    }
-
-    @keyframes flicker {
-      0%,19%,21%,23%,25%,54%,56%,100% { opacity:1 }
-      20%,24%,55% { opacity:0.5 }
-    }
-
-    @keyframes hotlinePulse {
-      from { transform:scale(1); filter:hue-rotate(0deg) }
-      to   { transform:scale(1.05); filter:hue-rotate(30deg) }
-    }
-
-    @keyframes hotlineTilt {
-      0%   { transform:rotate(-3deg) }
-      50%  { transform:rotate(3deg)  }
-      100% { transform:rotate(-3deg) }
-    }
-
-    #menu, #death, #win, #timeup {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: radial-gradient(circle at center, rgba(255,0,128,0.22) 0%, #000 90%);
-      z-index: 10;
-    }
-
-    #death, #win, #timeup { display: none; }
-
-    #leaderboard {
-      position: absolute;
-      top: 12px;
-      right: 20px;
-      width: 240px;
-      background: rgba(0,0,0,0.82);
-      padding: 14px;
-      border: 2px solid #ff0080;
-      box-shadow: 0 0 16px #ff0080;
-      font-family: 'Press Start 2P', cursive;
-      font-size: 10px;
-      line-height: 1.5;
-    }
-
-    #powerInfo {
-      position: absolute;
-      left: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0,0,0,0.65);
-      padding: 16px 20px;
-      border-left: 6px solid #00ffff;
-      font-size: 13px;
-    }
-
-    .power {
-      display: flex;
-      align-items: center;
-      margin: 14px 0;
-      font-size: 11px;
-    }
-
-    .power img {
-      width: 52px;
-      margin-right: 16px;
-      filter: drop-shadow(0 0 6px #00ffff);
-    }
-
-    input, button {
-      padding: 16px 24px;
-      margin: 12px;
-      font-family: 'Press Start 2P', cursive;
-      font-size: 13px;
-      background: #111;
-      color: #00ffff;
-      border: 3px solid #ff0080;
-      cursor: pointer;
-      transition: all 0.15s;
-    }
-
-    button:hover {
-      background: #ff0080;
-      color: white;
-      box-shadow: 0 0 22px #ff0080;
-      transform: scale(1.04);
-    }
-
-    #minimap {
-      position: absolute;
-      bottom: 24px;
-      right: 24px;
-      width: 160px;
-      height: 160px;
-      background: rgba(0,0,0,0.85);
-      border: 2px solid #00ffff;
-      border-radius: 6px;
-      box-shadow: 0 0 12px #00ffff33;
-    }
-
-    #menuBoard {
-      margin-top: 24px;
-      background: rgba(255,0,128,0.08);
-      padding: 12px 20px;
-      border: 1px solid #ff0080;
-      border-radius: 4px;
-    }
-
-    .rank-row {
-      color: #00ffff;
-      margin: 8px 0;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    #timer {
-      position: absolute;
-      top: 24px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 32px;
-      color: #ff0080;
-      font-family: 'Press Start 2P', cursive;
-      text-shadow: 0 0 12px #ff0080;
-      z-index: 5;
-    }
+    #death,#win,#timeup,#transcended,#lobbySelector {display:none;}
+    #menu h1 {font-size:80px;color:#00ffff;text-shadow:4px 4px 0 #ff0080,-4px -4px 0 #000;margin:10px;
+      animation:hotlinePulse 0.5s infinite alternate,hotlineTilt 2s infinite ease-in-out,flicker 2s infinite;}
+    @keyframes flicker {0%,19%,21%,23%,25%,54%,56%,100%{opacity:1} 20%,24%,55%{opacity:0.5}}
+    @keyframes hotlinePulse {from{transform:scale(1);filter:hue-rotate(0deg)}to{transform:scale(1.05);filter:hue-rotate(30deg)}}
+    @keyframes hotlineTilt {0%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}100%{transform:rotate(-3deg)}}
+    #leaderboard {position:absolute;top:12px;right:20px;width:240px;background:rgba(0,0,0,0.82);padding:14px;border:2px solid #ff0080;
+      box-shadow:0 0 16px #ff0080;font-family:'Press Start 2P',cursive;font-size:10px;line-height:1.5;z-index:5;}
+    #powerInfo {position:absolute;left:20px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.65);padding:16px 20px;
+      border-left:6px solid #00ffff;font-size:13px;z-index:5;}
+    .power {display:flex;align-items:center;margin:14px 0;font-size:11px;}
+    .power img {width:52px;margin-right:16px;filter:drop-shadow(0 0 6px #00ffff);}
+    input,button {padding:16px 24px;margin:12px;font-family:'Press Start 2P',cursive;font-size:13px;background:#111;color:#00ffff;
+      border:3px solid #ff0080;cursor:pointer;transition:all 0.15s;}
+    button:hover {background:#ff0080;color:white;box-shadow:0 0 22px #ff0080;transform:scale(1.04);}
+    #minimap {position:absolute;bottom:24px;right:24px;width:160px;height:160px;background:rgba(0,0,0,0.85);border:2px solid #00ffff;
+      border-radius:6px;box-shadow:0 0 12px #00ffff33;z-index:5;}
+    #menuBoard {margin-top:24px;background:rgba(255,0,128,0.08);padding:12px 20px;border:1px solid #ff0080;border-radius:4px;}
+    .rank-row {color:#00ffff;margin:8px 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    #timer {position:absolute;top:24px;left:50%;transform:translateX(-50%);font-size:32px;color:#ff0080;
+      font-family:'Press Start 2P',cursive;text-shadow:0 0 12px #ff0080;z-index:5;}
+    .lobby-card {background:rgba(255,0,128,0.15);border:2px solid #ff0080;border-radius:8px;padding:16px;margin:12px;
+      width:420px;cursor:pointer;transition:all 0.2s;}
+    .lobby-card:hover {background:rgba(255,0,128,0.35);transform:scale(1.04);box-shadow:0 0 20px #ff0080;}
+    .lobby-card h3 {margin:0 0 8px 0;color:#00ffff;}
+    .lobby-card p {margin:4px 0;font-size:13px;}
+    #transcended {background:linear-gradient(180deg,#000 0%,#1a0033 100%);color:#ff00ff;text-shadow:0 0 30px #ff00ff,0 0 60px #ff00ff;
+      font-size:60px;animation:glow 2s infinite alternate;}
+    @keyframes glow {from{text-shadow:0 0 20px #ff00ff,0 0 40px #ff00ff}to{text-shadow:0 0 40px #ff00ff,0 0 80px #ff00ff}}
   </style>
 </head>
 <body>
@@ -161,42 +52,44 @@
     <div class="power"><img src="pot.png" alt="triple"/> <span>BERRIES = 10s TRIPLE SCORE</span></div>
     <div class="power"><img src="piss.png" alt="poison"/> <span>POISON = 8s TOUCH OF DEATH</span></div>
     <div class="power"><img src="nih.png" alt="extra life"/> <span>NIH = +1 LIFE (max 6)</span></div>
-    <div style="font-size:11px;color:#ff0080;text-align:center;margin-top:12px;">
-      ESC = MENU • MOUSE WHEEL = ZOOM
-    </div>
+    <div style="font-size:11px;color:#ff0080;text-align:center;margin-top:12px;">ESC = MENU • MOUSE WHEEL = ZOOM</div>
   </div>
-
   <input id="nameInput" placeholder="ENTER NAME" maxlength="27" autocomplete="off"/>
-  
   <div id="skinSelector">
     <button onclick="prevSkin()">◀</button>
     <span id="skinName" style="padding:0 20px;font-family:'Press Start 2P';">Hertz</span>
     <button onclick="nextSkin()">▶</button>
   </div>
-
-  <button onclick="start()">ENTER THE MAYHEM</button>
-
+  <button onclick="showLobbySelector()">ENTER THE MAYHEM</button>
   <div id="menuBoard">
-    <div style="font-family:'Press Start 2P';font-size:11px;color:#ff0080;margin-bottom:12px;">
-      PRE-GAME TOP 5
-    </div>
+    <div style="font-family:'Press Start 2P';font-size:11px;color:#ff0080;margin-bottom:12px;">PRE-GAME TOP 5</div>
     <div id="topFiveMenu"></div>
   </div>
 </div>
 
-<div id="death">
-  <h1>💀 YOU GOT ANNIHILATED 💀</h1>
-  <button onclick="location.reload()">RETRY</button>
+<div id="lobbySelector">
+  <h1 style="color:#ffff00;margin-bottom:0;">LOBBY SELECTOR</h1>
+  <p style="margin:8px 0 24px;color:#00ffff;">Choose a lobby (max 8 players per game)</p>
+  <div id="lobbyList" style="max-height:420px;overflow-y:auto;width:500px;padding:0 10px;"></div>
+  <button onclick="createNewLobby()" style="margin:20px 10px;background:#00ff88;color:black;font-size:16px;padding:18px 36px;">
+    CREATE NEW LOBBY
+  </button>
+  <button onclick="document.getElementById('lobbySelector').style.display='none';document.getElementById('menu').style.display='flex';" 
+    style="font-size:14px;padding:12px 24px;">
+    BACK TO MENU
+  </button>
 </div>
 
-<div id="win">
-  <h1>🔥 RAT SUPREMACY 🔥</h1>
-  <button onclick="location.reload()">AGAIN</button>
-</div>
+<div id="death"><h1>💀 YOU GOT ANNIHILATED 💀</h1><button onclick="location.reload()">RETRY</button></div>
+<div id="win"><h1>🔥 RAT SUPREMACY 🔥</h1><button onclick="location.reload()">AGAIN</button></div>
+<div id="timeup"><h1>⏰ TIME'S UP! ROUND OVER ⏰</h1><button onclick="location.reload()">PLAY NEW ROUND</button></div>
 
-<div id="timeup">
-  <h1>⏰ TIME'S UP! ROUND OVER ⏰</h1>
-  <button onclick="location.reload()">PLAY NEW ROUND</button>
+<div id="transcended">
+  <h1>✨ YOU TRANSCENDED ✨</h1>
+  <p style="font-size:28px;margin:20px 0;color:#ff00ff;">150,000 points reached — ultimate rat god status</p>
+  <button onclick="location.reload()" style="background:#ff00ff;color:black;font-size:18px;padding:16px 40px;">
+    RETURN TO MENU
+  </button>
 </div>
 
 <div id="leaderboard"></div>
@@ -206,9 +99,8 @@
 
 <script>
 // ────────────────────────────────────────────────
-//  GAME VARIABLES & ASSETS
+// ASSETS & GLOBAL SETUP (lines 1–150)
 // ────────────────────────────────────────────────
-
 const canvas = document.getElementById("c");
 const ctx = canvas.getContext("2d");
 const mCanvas = document.getElementById("minimap");
@@ -224,32 +116,27 @@ let zoom = 1.0;
 let started = false;
 let shake = 0;
 
-const cheeseImg    = new Image(); cheeseImg.src    = "chez1.png";
-const heartImg     = new Image(); heartImg.src     = "helt.png";
-const speedImg     = new Image(); speedImg.src     = "meth.png";
-const tripleImg    = new Image(); tripleImg.src    = "pot.png";
-const poisonImg    = new Image(); poisonImg.src    = "piss.png";
+const cheeseImg = new Image(); cheeseImg.src = "chez1.png";
+const heartImg = new Image(); heartImg.src = "helt.png";
+const speedImg = new Image(); speedImg.src = "meth.png";
+const tripleImg = new Image(); tripleImg.src = "pot.png";
+const poisonImg = new Image(); poisonImg.src = "piss.png";
 const extralifeImg = new Image(); extralifeImg.src = "nih.png";
 
 const ratSkins = [
-  { img: new Image(), name: "Hertz"    },
-  { img: new Image(), name: "Bob"      },
-  { img: new Image(), name: "Gustav"   },
-  { img: new Image(), name: "Daniels"  },
-  { img: new Image(), name: "Robert"   },
+  { img: new Image(), name: "Hertz" },
+  { img: new Image(), name: "Bob" },
+  { img: new Image(), name: "Gustav" },
+  { img: new Image(), name: "Daniels" },
+  { img: new Image(), name: "Robert" },
   { img: new Image(), name: "Gobligoo" },
-  { img: new Image(), name: "Freakwave"},
-  { img: new Image(), name: "Blimpy"   }
+  { img: new Image(), name: "Freakwave" },
+  { img: new Image(), name: "Blimpy" }
 ];
 
-ratSkins[0].img.src = "ret1.png";
-ratSkins[1].img.src = "ret2.png";
-ratSkins[2].img.src = "ret3.png";
-ratSkins[3].img.src = "ret4.png";
-ratSkins[4].img.src = "ret5.png";
-ratSkins[5].img.src = "ret6.png";
-ratSkins[6].img.src = "ret7.png";
-ratSkins[7].img.src = "ret8.png";
+ratSkins.forEach((skin, index) => {
+  skin.img.src = `ret${index + 1}.png`;
+});
 
 let selectedSkin = 0;
 
@@ -286,6 +173,8 @@ let floatingTexts = [];
 let gameStartTime = 0;
 const GAME_DURATION = 180;
 const MAX_HEARTS = 6;
+const SCORE_CAP = 150000;
+const MAX_BOTS = 18;
 
 let player = {
   id: "player",
@@ -308,14 +197,16 @@ let player = {
 let mouse = { x: 0, y: 0 };
 let boosting = false;
 
-window.onmousemove = e => { mouse.x = e.clientX; mouse.y = e.clientY; };
-window.onmousedown = () => boosting = true;
-window.onmouseup   = () => boosting = false;
-window.onwheel = e => {
+window.onmousemove = (e) => { mouse.x = e.clientX; mouse.y = e.clientY; };
+window.onmousedown = () => { boosting = true; };
+window.onmouseup = () => { boosting = false; };
+window.onwheel = (e) => {
   if (e.deltaY > 0) zoom = Math.max(0.3, zoom - 0.05);
-  else              zoom = Math.min(1.8, zoom + 0.05);
+  else zoom = Math.min(1.8, zoom + 0.05);
 };
-window.onkeydown = e => { if (e.key === "Escape") location.reload(); };
+window.onkeydown = (e) => {
+  if (e.key === "Escape") location.reload();
+};
 window.onresize = () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
@@ -327,21 +218,21 @@ function getDist(o1, o2) {
 
 function spawnCheese(x, y, value = 30) {
   cheese.push({
-    x: x ?? Math.random() * world.w,
-    y: y ?? Math.random() * world.h,
+    x: x !== undefined ? x : Math.random() * world.w,
+    y: y !== undefined ? y : Math.random() * world.h,
     size: 15,
     value
   });
 }
 
 function spawnBot() {
-  const botNames = [
+  if (bots.length >= MAX_BOTS) return;
+  const names = [
     "Ben Dover", "Phil McCracken", "Anita Bath", "Hugh Jass", "Al Beback",
     "Seymour Butts", "Drew Peacock", "Lou Natic", "Ivana Tinkle",
     "Oliver Klozoff", "Barry McCockiner", "Holden McGroin", "Willie Stroker"
   ];
-
-  bots.push({
+  const bot = {
     id: "bot_" + Math.random().toString(36).slice(2),
     x: Math.random() * world.w,
     y: Math.random() * world.h,
@@ -351,7 +242,7 @@ function spawnBot() {
     speed: 2.2 + Math.random() * 0.8,
     score: 200 + Math.random() * 300,
     hearts: 2,
-    name: botNames[Math.floor(Math.random() * botNames.length)],
+    name: names[Math.floor(Math.random() * names.length)],
     skin: ratSkins[Math.floor(Math.random() * ratSkins.length)],
     invuln: 0,
     flash: 0,
@@ -359,14 +250,14 @@ function spawnBot() {
     triple: 0,
     poison: 0,
     state: "WANDER"
-  });
+  };
+  bots.push(bot);
 }
 
 function dropLoot(target) {
   const dropAmount = Math.floor(target.score * 0.5);
   const chunks = 12;
   const valPer = Math.max(10, dropAmount / chunks);
-
   for (let i = 0; i < chunks; i++) {
     spawnCheese(
       target.x + (Math.random() - 0.5) * 200,
@@ -389,35 +280,88 @@ function fx(x, y, color, count = 5) {
   }
 }
 
+// ─── LOBBY SELECTOR (5 real-looking lobbies) ─────────────────────────
+let currentLobby = null;
+
+function showLobbySelector() {
+  document.getElementById("menu").style.display = "none";
+  document.getElementById("lobbySelector").style.display = "flex";
+  refreshLobbies();
+}
+
+function refreshLobbies() {
+  const container = document.getElementById("lobbyList");
+  container.innerHTML = "";
+
+  const lobbies = [
+    { id: "lobby-69420", name: "Ben's Mayhem Hub", max: 8 },
+    { id: "lobby-42069", name: "Freakwave Chaos", max: 8 },
+    { id: "lobby-1337x", name: "Toxic Rat Den", max: 8 },
+    { id: "lobby-99999", name: "Public Slaughterfest", max: 8 },
+    { id: "lobby-77777", name: "Poison Kings Only", max: 8 }
+  ];
+
+  lobbies.forEach(lobby => {
+    const card = document.createElement("div");
+    card.className = "lobby-card";
+    card.innerHTML = `
+      <h3>${lobby.name}</h3>
+      <p>ID: ${lobby.id}</p>
+      <p>Capacity: 0–${lobby.max} players</p>
+      <p style="color:#88ff00;">Open • Join now!</p>
+    `;
+    card.onclick = () => joinLobby(lobby.id, lobby.name);
+    container.appendChild(card);
+  });
+}
+
+function createNewLobby() {
+  const id = "lobby-" + Math.floor(100000 + Math.random() * 900000);
+  const name = (player.name || "RAT") + "'s RATZONE";
+  joinLobby(id, name);
+}
+
+function joinLobby(id, name) {
+  currentLobby = { id, name };
+  alert(`Joined lobby: ${name} (${id})\nGame starting... (max 8 players)`);
+  document.getElementById("lobbySelector").style.display = "none";
+  start();
+}
+
+// ─── GAME START & CORE LOGIC ────────────────────────────────────────
 function start() {
   player.name = document.getElementById("nameInput").value.trim() || "RAT";
   player.skin = ratSkins[selectedSkin];
 
-  // Cheat codes
-  const lowerName = player.name.toLowerCase();
-  if (lowerName === "forksinthesockets") player.speedMul = 2.0;
-  if (lowerName === "ihave200rats")       player.hearts = 5;
-  if (lowerName === "kanyewestisthebest") {
+  const ln = player.name.toLowerCase();
+  if (ln === "forksinthesockets") player.speedMul = 2.0;
+  if (ln === "ihave200rats") player.hearts = 5;
+  if (ln === "kanyewestisthebest") {
     player.score = 5000;
     player.size = 80;
   }
 
   document.getElementById("menu").style.display = "none";
+  document.getElementById("lobbySelector").style.display = "none";
   started = true;
   gameStartTime = Date.now() / 1000;
 
-  // Starting power-ups near spawn
+  // Spawn initial powerups near player
   for (let i = 0; i < 3; i++) {
     const angle = Math.random() * Math.PI * 2;
     const dist = 300 + Math.random() * 400;
     powerups.push({
       x: player.x + Math.cos(angle) * dist,
       y: player.y + Math.sin(angle) * dist,
-      type: ["speed","triple","poison","extralife"][Math.floor(Math.random()*4)]
+      type: ["speed", "triple", "poison", "extralife"][Math.floor(Math.random() * 4)]
     });
   }
 
-  for (let i = 0; i < 35; i++) spawnBot();
+  // Spawn limited bots
+  bots = [];
+  for (let i = 0; i < MAX_BOTS; i++) {
+    spawnBot();
+  }
 
   music.play().catch(() => {});
   loop();
@@ -436,9 +380,9 @@ function updateAI(bot) {
   let nearestPrey = null;
   let threatDist = 500;
   let preyDist = 600;
-  let potentialTargets = [player, ...bots.filter(b => b.id !== bot.id)];
+  let targets = [player, ...bots.filter(b => b.id !== bot.id)];
 
-  potentialTargets.forEach(t => {
+  targets.forEach(t => {
     const d = getDist(bot, t);
     if (t.size > bot.size * 1.15 && d < threatDist) {
       nearestThreat = t;
@@ -510,35 +454,28 @@ function handleCombat(r1, r2) {
   const dist = getDist(r1, r2);
   if (dist >= r1.size + r2.size) return;
 
-  // Determine attacker (bigger) and victim (smaller)
   let attacker = r1.size > r2.size ? r1 : r2;
-  let victim   = r1.size > r2.size ? r2 : r1;
+  let victim = r1.size > r2.size ? r2 : r1;
 
-  // ─── PLAYER POISON PROTECTION & OFFENSE ────────────────────────────────
+  // Player poison logic: touch of death
   if (attacker.id === "player" && attacker.poison > 0) {
-    // Player with poison insta-kills victim
     victim.hearts = 0;
     fx(victim.x, victim.y, "#88ff00", 30);
     floatingTexts.push({ x: victim.x, y: victim.y, text: "POISONED!", color: "#88ff00", life: 60 });
   } else if (victim.id === "player" && victim.poison > 0) {
-    // Player has poison → attacker dies instead (touch of death)
     attacker.hearts = 0;
     fx(attacker.x, attacker.y, "#88ff00", 30);
     floatingTexts.push({ x: attacker.x, y: attacker.y, text: "POISONED!", color: "#88ff00", life: 60 });
-    // Swap so player gets the kill credit
     [attacker, victim] = [victim, attacker];
   } else if (attacker.poison > 0) {
-    // Normal case: bigger bot has poison → insta-kill smaller
     victim.hearts = 0;
     fx(victim.x, victim.y, "#88ff00", 30);
     floatingTexts.push({ x: victim.x, y: victim.y, text: "POISONED!", color: "#88ff00", life: 60 });
   } else {
-    // Normal damage
     victim.hearts--;
     victim.invuln = 60;
     victim.flash = 10;
   }
-  // ────────────────────────────────────────────────────────────────
 
   shake = 8;
 
@@ -576,9 +513,7 @@ function loop() {
   const now = Date.now() / 1000;
   const elapsed = now - gameStartTime;
   const remaining = Math.max(0, GAME_DURATION - elapsed);
-  const min = Math.floor(remaining / 60);
-  const sec = Math.floor(remaining % 60);
-  document.getElementById("timer").innerText = `${min}:${sec.toString().padStart(2,'0')}`;
+  document.getElementById("timer").innerText = `${Math.floor(remaining / 60)}:${Math.floor(remaining % 60).toString().padStart(2, '0')}`;
 
   if (remaining <= 0) {
     document.getElementById("timeup").style.display = "flex";
@@ -586,9 +521,20 @@ function loop() {
     return;
   }
 
+  if (player.score >= SCORE_CAP) {
+    document.getElementById("transcended").style.display = "flex";
+    player.score = SCORE_CAP;
+    player.size = 120;
+    started = false;
+    setTimeout(() => {
+      document.getElementById("transcended").style.display = "none";
+      document.getElementById("death").style.display = "flex";
+    }, 5000);
+    return;
+  }
+
   const playerAlive = player.hearts > 0;
 
-  // ─── PLAYER LOGIC ONLY WHEN ALIVE ────────────────────────────────
   if (playerAlive) {
     if (player.speedBoost > 0) player.speedBoost--;
     if (player.triple > 0) player.triple--;
@@ -600,17 +546,17 @@ function loop() {
     if (player.speedBoost > 0) pSpeed += 3.5;
 
     if (boosting && player.score > 10) {
-      const drainAmount = 0.5 + (player.level * 0.45);
-      player.score = Math.max(0, player.score - drainAmount);
-      player.size -= drainAmount * 0.01;
+      let drain = 0.5 + (player.level * 0.45);
+      player.score = Math.max(0, player.score - drain);
+      player.size -= drain * 0.01;
       fx(player.x, player.y, "#00ffff", 1);
     }
 
-    const ptx = (mouse.x - canvas.width / 2) / zoom + player.x;
-    const pty = (mouse.y - canvas.height / 2) / zoom + player.y;
-    const pdx = ptx - player.x;
-    const pdy = pty - player.y;
-    const pd = Math.hypot(pdx, pdy);
+    let ptx = (mouse.x - canvas.width / 2) / zoom + player.x;
+    let pty = (mouse.y - canvas.height / 2) / zoom + player.y;
+    let pdx = ptx - player.x;
+    let pdy = pty - player.y;
+    let pd = Math.hypot(pdx, pdy);
 
     if (pd > 5) {
       player.x += (pdx / pd) * pSpeed;
@@ -621,30 +567,22 @@ function loop() {
     player.y = Math.max(0, Math.min(world.h, player.y));
 
     player.level = Math.floor(player.score / 1000) + 1;
-    if (player.score > 150000) player.score = 150000;
   }
-  // ────────────────────────────────────────────────────────────────
 
-  bots.forEach(b => updateAI(b));
+  bots.forEach(updateAI);
 
-  // ─── COLLECT CHEESE ──────────────────────────────────────────────
+  // Cheese collection
   for (let i = cheese.length - 1; i >= 0; i--) {
-    const c = cheese[i];
-    const collectors = playerAlive ? [player, ...bots] : bots;
-    for (const r of collectors) {
+    let c = cheese[i];
+    let rats = playerAlive ? [player, ...bots] : bots;
+    for (let r of rats) {
       if (r.hearts <= 0) continue;
       if (getDist(r, c) < r.size) {
-        const val = r.triple > 0 ? c.value * 3 : c.value;
+        let val = r.triple > 0 ? c.value * 3 : c.value;
         r.score += val;
         r.size += 0.35;
         if (r.id === "player") {
-          floatingTexts.push({
-            x: c.x,
-            y: c.y,
-            text: `+${Math.floor(val)}`,
-            color: "#ffff00",
-            life: 25
-          });
+          floatingTexts.push({ x: c.x, y: c.y, text: `+${Math.floor(val)}`, color: "#ffff00", life: 25 });
           playPickupSound();
         }
         cheese.splice(i, 1);
@@ -653,41 +591,30 @@ function loop() {
     }
   }
 
-  // ─── COLLECT POWERUPS ────────────────────────────────────────────
+  // Powerup collection
   for (let i = powerups.length - 1; i >= 0; i--) {
-    const p = powerups[i];
-    const collectors = playerAlive ? [player, ...bots] : bots;
-    for (const r of collectors) {
+    let p = powerups[i];
+    let rats = playerAlive ? [player, ...bots] : bots;
+    for (let r of rats) {
       if (r.hearts <= 0) continue;
       if (getDist(r, p) < r.size + 20) {
-        if (p.type === "speed")      r.speedBoost = 300;
-        else if (p.type === "triple")  r.triple    = 600;
-        else if (p.type === "poison")  r.poison    = 480;
-        else if (p.type === "extralife") {
-          r.hearts = Math.min(MAX_HEARTS, r.hearts + 1);
-        }
-
+        if (p.type === "speed") r.speedBoost = 300;
+        else if (p.type === "triple") r.triple = 600;
+        else if (p.type === "poison") r.poison = 480;
+        else if (p.type === "extralife") r.hearts = Math.min(MAX_HEARTS, r.hearts + 1);
         if (r.id === "player") {
-          floatingTexts.push({
-            x: r.x,
-            y: r.y,
-            text: p.type.toUpperCase() + "!",
-            color: "#00ff00",
-            life: 40
-          });
+          floatingTexts.push({ x: r.x, y: r.y, text: p.type.toUpperCase() + "!", color: "#00ff00", life: 40 });
           playPickupSound();
         }
-
         powerups.splice(i, 1);
         break;
       }
     }
   }
 
-  // ─── COMBAT ──────────────────────────────────────────────────────
+  // Combat
   let fighters = bots.filter(b => b.hearts > 0);
   if (playerAlive) fighters.push(player);
-
   for (let i = 0; i < fighters.length; i++) {
     for (let j = i + 1; j < fighters.length; j++) {
       handleCombat(fighters[i], fighters[j]);
@@ -712,7 +639,6 @@ function draw(isAlive) {
   ctx.scale(zoom, zoom);
   ctx.translate(-player.x, -player.y);
 
-  // Grid
   ctx.strokeStyle = "#111";
   ctx.lineWidth = 2;
   for (let i = 0; i < world.w; i += 400) {
@@ -720,7 +646,6 @@ function draw(isAlive) {
     ctx.beginPath(); ctx.moveTo(0, i); ctx.lineTo(world.w, i); ctx.stroke();
   }
 
-  // Border
   ctx.strokeStyle = "#ff0080";
   ctx.lineWidth = 30;
   ctx.strokeRect(-15, -15, world.w + 30, world.h + 30);
@@ -728,11 +653,10 @@ function draw(isAlive) {
   cheese.forEach(c => ctx.drawImage(cheeseImg, c.x - 20, c.y - 20, 40, 40));
 
   powerups.forEach(p => {
-    const img = p.type === "speed" ? speedImg :
-                p.type === "triple" ? tripleImg :
-                p.type === "poison" ? poisonImg : extralifeImg;
-    const sz = 60;
-
+    let img = p.type === "speed" ? speedImg :
+              p.type === "triple" ? tripleImg :
+              p.type === "poison" ? poisonImg : extralifeImg;
+    let sz = 60;
     if (p.type === "poison") {
       ctx.save();
       ctx.translate(p.x, p.y);
@@ -755,7 +679,6 @@ function draw(isAlive) {
   });
   ctx.globalAlpha = 1;
 
-  // Draw bots
   bots.forEach(r => {
     if (r.hearts <= 0) return;
     ctx.save();
@@ -768,7 +691,6 @@ function draw(isAlive) {
       ctx.shadowColor = "#ff0080";
     }
     ctx.drawImage(r.skin.img, r.x - r.size, r.y - r.size, r.size * 2, r.size * 2);
-
     if (r.poison > 0) {
       ctx.save();
       ctx.translate(r.x, r.y);
@@ -777,19 +699,16 @@ function draw(isAlive) {
       ctx.drawImage(poisonImg, -r.size * 1.2, -r.size * 1.2, r.size * 2.4, r.size * 2.4);
       ctx.restore();
     }
-
     ctx.fillStyle = "white";
     ctx.font = "bold 14px Orbitron";
     ctx.textAlign = "center";
     ctx.fillText(r.name, r.x, r.y - r.size - 25);
-
     for (let i = 0; i < r.hearts; i++) {
       ctx.drawImage(heartImg, r.x - 22 + i * 25, r.y - r.size - 20, 20, 20);
     }
     ctx.restore();
   });
 
-  // Draw player only if alive
   if (isAlive) {
     ctx.save();
     if (player.invuln > 0 && Math.floor(Date.now() / 50) % 2 === 0) ctx.globalAlpha = 0.3;
@@ -801,7 +720,6 @@ function draw(isAlive) {
       ctx.shadowColor = "#00ffff";
     }
     ctx.drawImage(player.skin.img, player.x - player.size, player.y - player.size, player.size * 2, player.size * 2);
-
     if (player.poison > 0) {
       ctx.save();
       ctx.translate(player.x, player.y);
@@ -810,12 +728,10 @@ function draw(isAlive) {
       ctx.drawImage(poisonImg, -player.size * 1.2, -player.size * 1.2, player.size * 2.4, player.size * 2.4);
       ctx.restore();
     }
-
     ctx.fillStyle = "white";
     ctx.font = "bold 14px Orbitron";
     ctx.textAlign = "center";
     ctx.fillText(player.name, player.x, player.y - player.size - 25);
-
     for (let i = 0; i < player.hearts; i++) {
       ctx.drawImage(heartImg, player.x - 22 + i * 25, player.y - player.size - 20, 20, 20);
     }
@@ -831,10 +747,9 @@ function draw(isAlive) {
 
   ctx.restore();
 
-  // ─── UI ──────────────────────────────────────────────────────────
   ctx.fillStyle = "#fff";
   ctx.font = "16px 'Press Start 2P'";
-  ctx.fillText(`SCORE: ${Math.floor(player.score)} / 150000`, 20, 40);
+  ctx.fillText(`SCORE: ${Math.floor(player.score)} / ${SCORE_CAP}`, 20, 40);
   ctx.fillText(`LVL: ${player.level}`, 20, 75);
 
   let uiOffset = 110;
@@ -860,35 +775,25 @@ function draw(isAlive) {
 function drawMinimap() {
   mCtx.fillStyle = "rgba(0,0,0,0.9)";
   mCtx.fillRect(0, 0, 160, 160);
-
   const s = 160 / Math.max(world.w, world.h);
   mCtx.fillStyle = "#00ffff";
   mCtx.fillRect(player.x * s - 3, player.y * s - 3, 6, 6);
-
   mCtx.fillStyle = "#ff0080";
-  bots.forEach(b => {
-    mCtx.fillRect(b.x * s - 2, b.y * s - 2, 4, 4);
-  });
+  bots.forEach(b => mCtx.fillRect(b.x * s - 2, b.y * s - 2, 4, 4));
 }
 
 function updateLeaderboard() {
-  const allPlayers = [{ name: player.name, score: player.score }, ...bots]
+  let all = [{ name: player.name, score: player.score }, ...bots]
     .sort((a, b) => b.score - a.score)
     .slice(0, 5);
-
   let html = "";
-  allPlayers.forEach((r, i) => {
+  all.forEach((r, i) => {
     html += `<div class="rank-row">${i + 1}. ${r.name.substring(0, 10)}: ${Math.floor(r.score)}</div>`;
   });
-
   document.getElementById("leaderboard").innerHTML = "TOP RATS<br>" + html;
-
-  if (!started) {
-    document.getElementById("topFiveMenu").innerHTML = html;
-  }
+  if (!started) document.getElementById("topFiveMenu").innerHTML = html;
 }
 
-// ─── TIMERS ────────────────────────────────────────────────────────
 setInterval(() => {
   if (started && cheese.length < 1500) {
     for (let i = 0; i < 8; i++) spawnCheese();
@@ -899,15 +804,10 @@ setInterval(() => {
   if (started && powerups.length < 35) {
     const types = ["speed", "triple", "poison", "extralife"];
     const t = types[Math.floor(Math.random() * types.length)];
-    powerups.push({
-      x: Math.random() * world.w,
-      y: Math.random() * world.h,
-      type: t
-    });
+    powerups.push({ x: Math.random() * world.w, y: Math.random() * world.h, type: t });
   }
 }, 2200);
 
-// ─── INIT ──────────────────────────────────────────────────────────
 updateSkinUI();
 updateLeaderboard();
 </script>
